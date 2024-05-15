@@ -41,7 +41,6 @@ const handleOnStart = () => {
 
 //stops the timer
 const handleOnStop = () => {
-  console.log("stop");
   clearInterval(interval);
 };
 

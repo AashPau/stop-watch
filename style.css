@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 10px solid rebeccapurple;
+  margin: 50px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.container .box {
+  display: flex;
+  font-size: xx-large;
+  color: red;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 40px;
+  border: 5px solid black;
+  box-shadow: 5px 10px rgb(81, 64, 64);
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.btn {
+  display: flex;
+  gap: 20px;
+}
+
+.btn #start {
+  font-size: x-large;
+  color: green;
+}
+.btn #stop {
+  font-size: x-large;
+  color: red;
+}
+.btn #reset {
+  font-size: x-large;
+  color: rgb(120, 120, 7);
+}
