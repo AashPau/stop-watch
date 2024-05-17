@@ -4,9 +4,13 @@ let secValue = 0;
 const startbtn = document.getElementById("start");
 const stopbtn = document.getElementById("stop");
 const resetbtn = document.getElementById("reset");
+const secElement = document.getElementById("sec");
+const minElement = document.getElementById("min");
+const hrElement = document.getElementById("hr");
+let intervalId = null;
 
 //calculate the increasing time
-const increseTime = () => {
+const increaseTime = () => {
   secValue++;
   if (secValue >= 60) {
     secValue = 0;
@@ -20,28 +24,26 @@ const increseTime = () => {
 
 //update the time in DOM
 const setTime = () => {
-  increseTime();
+  increaseTime();
   //update sec
-  document.getElementById("sec").innerText = secValue
-    .toString()
-    .padStart(2, "0"); //padStart(2,"0") will help to have "01" insted of "1".
+  secElement.innerText = secValue.toString().padStart(2, "0"); //padStart(2,"0") will help to have "01" insted of "1".
   //update min
-  document.getElementById("min").innerText = minValue
-    .toString()
-    .padStart(2, "0");
+  minElement.innerText = minValue.toString().padStart(2, "0");
   //update hr
-  document.getElementById("hr").innerText = hrValue.toString().padStart(2, "0");
+  hrElement.innerText = hrValue.toString().padStart(2, "0");
 };
 
-let interval = 0;
 //start button starts the 1s intervals
 const handleOnStart = () => {
-  interval = setInterval(setTime, 1000);
+  if (!intervalId) {
+    intervalId = setInterval(setTime, 1000);
+  } else return;
 };
 
 //stops the timer
 const handleOnStop = () => {
-  clearInterval(interval);
+  clearInterval(intervalId);
+  intervalId = null; // Reset intervalId
 };
 
 // stop and resets the timer
@@ -52,15 +54,14 @@ const handleOnReset = () => {
   minValue = 0;
   hrValue = 0;
   //send the reset value to DOM.
-  document.getElementById("sec").innerText = secValue
-    .toString()
-    .padStart(2, "0");
-  document.getElementById("min").innerText = minValue
-    .toString()
-    .padStart(2, "0");
-  document.getElementById("hr").innerText = hrValue.toString().padStart(2, "0");
+  secElement.innerText = "00";
+  minElement.innerText = "00";
+  hrElement.innerText = "00";
 };
 //eventlisteners
 startbtn.addEventListener("click", handleOnStart);
 stopbtn.addEventListener("click", handleOnStop);
 resetbtn.addEventListener("click", handleOnReset);
+
+// // Initialize displayed time with initial values
+// setTime();
